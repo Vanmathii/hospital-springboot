@@ -1,0 +1,59 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.3.BUILD-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+	id 'war'
+    id 'checkstyle'
+    id 'eclipse'
+    id 'java-library'
+}
+ext {
+    checkstyleVersion = '8.11'
+}
+checkstyle {
+    sourceSets = []
+    toolVersion = checkstyleVersion
+    config = rootProject.resources.text.fromFile('etc/checkstyle/rules.xml')
+}
+task checkstyle {
+    dependsOn 'checkstyleMain'
+    dependsOn 'checkstyleTest'
+    tasks.findByName('checkstyleTest').mustRunAfter 'checkstyleMain'
+}
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+dependencies {
+implementation 'org.flywaydb:flyway-core'
+// https://mvnrepository.com/artifact/com.auth0/java-jwt
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    compile('javax.xml.bind:jaxb-api:2.3.0')
+// Jackson Databind
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.9.1'
+        // JAXB
+    compile group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.2.8-b01'
+     // Javax Activation
+    compile group: 'com.sun.activation', name: 'javax.activation', version: '1.2.0'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1'
+	runtimeOnly 'mysql:mysql-connector-java'
+	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-core
+compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.2.1.RELEASE'
+
+// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+test {
+	useJUnitPlatform()
+}
