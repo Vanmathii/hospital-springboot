@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;  
 import java.util.Optional;  
 @RestController  
-@RequestMapping("/user")
+@RequestMapping("/userdetails")
 public class UserController {  
     @Autowired  
-    private UserService userService;   
+    private UserServiceJPA userService;   
     @RequestMapping("/all")  
     public List<UserRecord> getAllUser(){  
         return userService.getAllUsers();  

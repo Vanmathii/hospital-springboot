@@ -21,7 +21,7 @@ public class BusinessException extends Exception {
 	 */
 	@ExceptionHandler(value = BusinessException.class)
 	public ResponseEntity<Object> exception(BusinessException exception) {
-		return new ResponseEntity<>("Bad request / Invalid details", HttpStatus.OK);
+		return new ResponseEntity<>("Bad requested / Invalid details", HttpStatus.OK);
 	}
 
 	/**
