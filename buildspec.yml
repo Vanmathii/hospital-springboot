@@ -11,5 +11,4 @@ phases:
 artifacts:
   files:
     - build/libs/HospitalManagementSystemApplication-0.0.1-SNAPSHOT.war
-#    - appspec.yml
   discard-paths: yes
