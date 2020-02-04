@@ -35,6 +35,7 @@ public class AuthController {
 	public CustomResponse<Integer> updateDoctor(@RequestBody LoginDetails user,@RequestAttribute("requestId") String requestId,HttpServletRequest httpServletRequest) throws BusinessException, SystemException {
 		System.out.println(user.toString());
 		int role = userService.authUserService(user);
+		System.out.println(role);
 		CustomResponse<Integer> response= new CustomResponse<Integer>();
 		response.setObject(role);
 		response.setStatus("OK");

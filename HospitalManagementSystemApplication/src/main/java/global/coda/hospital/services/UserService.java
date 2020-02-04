@@ -25,12 +25,7 @@ public class UserService {
 			System.out.println(user.toString());
 			int role = authMapper.authentication(user);
 //			System.out.println(role);
-			
-			if(role==-1)
-			{
-				throw new BusinessException();
-			}
-			
+			return role;
 		} catch (SQLException error) {
 			System.out.println(error.getMessage());
 			throw new SystemException(error.getMessage());
@@ -38,6 +33,6 @@ public class UserService {
 			System.out.println(exception.getMessage());
 			throw new SystemException(exception.getMessage());
 		}
-		return 0;
+	
 	}
 }
